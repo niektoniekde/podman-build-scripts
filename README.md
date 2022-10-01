@@ -37,5 +37,5 @@ $ . registryauth.env
 ```
 
 # Dockerfile(s)
-Directory ``niektoniekde`` (``${NAMESPACE}``) containing directory structure where Dockerfiles are present is not part of this GitHub repository.
+Directory ``niektoniekde`` (``${NAMESPACE}``) containing directory structure where Dockerfiles are present is not part of **this** GitHub repository.
 Each image built this way has its own repository where tags are kept as branches.
