@@ -8,12 +8,12 @@ Just create an 'env' file and keep the directory structure:
 
 Each directory under repository directory is dealt as tag.
 So if the directory structure looks like this:
-``
-    niektoniekde/
-        rsyslog/
-            latest/
-            alpine-3.16/
-``
+```
+  niektoniekde/
+    rsyslog/
+      latest/
+      alpine-3.16/
+```
 
 Two images will be built using `podman-build-img`:
 * niektoniekde/rsyslog:latest
