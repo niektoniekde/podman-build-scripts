@@ -24,10 +24,10 @@ and also these two images will be push to registry with `podman-push-img`.
 * ``podman-push-img <file.env>``
 
 ## Expected variables
-* ``$REGISTRY`` - Registry where images will be pushed.
-* ``$NAMESPACE`` - Namespace where repositories reside, eg. your login name at Docker Hub.
-* ``$REPOSITORY`` - Repository name.
-* ``$REGISTRY_AUTH_FILE`` - Auth file to registry provided to podman by ``--authfile`` argument. 
+* ``$REGISTRY`` - registry where images will be pushed.
+* ``$NAMESPACE`` - namespace where repositories reside, eg. your login name at Docker Hub.
+* ``$REPOSITORY`` - repository name.
+* ``$REGISTRY_AUTH_FILE`` - auth file to registry provided to podman by ``--authfile`` argument. 
 
 There is tool ``registryauth.env`` for exporting ``$REGISTRY_AUTH_FILE`` to environment
 if authfile is kept in ``${PWD}/.auth`` directory named as ``auth.json``.  
@@ -36,3 +36,6 @@ It can be used like this:
 $ . registryauth.env
 ```
 
+# Dockerfile(s)
+Directory ``niektoniekde`` (``${NAMESPACE}``) containing directory structure where Dockerfiles are present is not part of this GitHub repository.
+Each image built this way has its own repository where tags are kept as branches.
