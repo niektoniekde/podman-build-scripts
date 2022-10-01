@@ -28,5 +28,5 @@ for TAG in $(IFS=$'\n'; ls -1 "${NAMESPACE}/${REPOSITORY}"); do
     echo "ERROR: local image dosn't exist, you have to build it first" >&2
     exit 103
   fi
-  podman push "${NAMESPACE}/${REPOSITORY}:${TAG}" "${REGISTRY}/${NAMESPACE}/${REPOSITORY}:${TAG}"
+  podman push --authfile "${REGISTRY_AUTH_FILE}" "${NAMESPACE}/${REPOSITORY}:${TAG}" "${REGISTRY}/${NAMESPACE}/${REPOSITORY}:${TAG}"
 done
