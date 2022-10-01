@@ -14,11 +14,10 @@ So if the directory structure looks like this:
 ```
 
 Two images will be built using `podman-build-img`:
-* niektoniekde/rsyslog:latest
-* niektoniekde/rsyslog:alpine-3.16
+* *niektoniekde/rsyslog:latest*
+* *niektoniekde/rsyslog:alpine-3.16*
 
-and also these two images will be push to registry  
-with `podman-push-img`.
+and also these two images will be push to registry with `podman-push-img`.
 
 # Usage
 * ``podman-build-img <file.env>``
