@@ -1,0 +1,32 @@
+#! /bin/bash
+set -eE
+USAGE="USAGE: ${0##*/} <file.env>"
+
+if [[ -z ${1} ]]; then
+  echo "ERROR: env file not provided" >&2
+  echo "$USAGE"
+  exit 100
+fi
+
+
+if ! [[ -f ${1} ]]; then
+  echo "ERROR: env file not found" >&2
+  exit 101
+fi
+
+source ${1}
+
+if [[ -n $REGISTRY_AUTH_FILE ]]; then
+  if ! [[ -f $REGISTRY_AUTH_FILE ]]; then
+    echo "ERROR: registry auth file is not present" >&2
+    exit 102
+  fi
+fi
+
+for TAG in $(IFS=$'\n'; ls -1 "${NAMESPACE}/${REPOSITORY}"); do
+  if ! [[ -d "${NAMESPACE}/${REPOSITORY}/${TAG}" ]]; then
+    echo "ERROR: path to docker file isn't valid: '${NAMESPACE}/${REPOSITORY}/${TAG}'" >&2
+    exit 103
+  fi
+  podman build --pull-always --authfile "${REGISTRY_AUTH_FILE}" --tag "${NAMESPACE}/${REPOSITORY}:${TAG}" "${NAMESPACE}/${REPOSITORY}/${TAG}"
+done 

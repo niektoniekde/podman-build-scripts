@@ -1,0 +1,32 @@
+#! /bin/bash
+set -eE
+USAGE="USAGE: ${0##*/} <file.env>"
+
+if [[ -z ${1} ]]; then
+  echo "ERROR: env file not provided" >&2
+  echo "$USAGE"
+  exit 100
+fi
+
+
+if ! [[ -f ${1} ]]; then
+  echo "ERROR: env file not found" >&2
+  exit 101
+fi
+
+source ${1}
+
+if [[ -n $REGISTRY_AUTH_FILE ]]; then
+  if ! [[ -f $REGISTRY_AUTH_FILE ]]; then
+    echo "ERROR: registry auth file is not present" >&2
+    exit 102
+  fi
+fi
+
+for TAG in $(IFS=$'\n'; ls -1 "${NAMESPACE}/${REPOSITORY}"); do
+  if ! podman image exists "localhost/${NAMESPACE}/${REPOSITORY}:${TAG}"; then
+    echo "ERROR: local image dosn't exist, you have to build it first" >&2
+    exit 103
+  fi
+  podman push "${NAMESPACE}/${REPOSITORY}:${TAG}" "${REGISTRY}/${NAMESPACE}/${REPOSITORY}:${TAG}"
+done
