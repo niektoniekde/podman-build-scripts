@@ -28,9 +28,9 @@ with `podman-push-img`.
 * ``$REGISTRY`` - Registry where images will be pushed.
 * ``$NAMESPACE`` - Namespace where repositories reside, eg. your login name at Docker Hub.
 * ``$REPOSITORY`` - Repository name.
-* ``REGISTRY_AUTH_FILE`` - Auth file to registry provided to podman by ``--authfile`` argument. 
+* ``$REGISTRY_AUTH_FILE`` - Auth file to registry provided to podman by ``--authfile`` argument. 
 
-There is tool ``registryauth.env`` for exporting ``REGISTRY_AUTH_FILE`` to environment
+There is tool ``registryauth.env`` for exporting ``$REGISTRY_AUTH_FILE`` to environment
 if authfile is kept in ``${PWD}/.auth`` directory named as ``auth.json``.  
 It can be used like this:  
 ```
