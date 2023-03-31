@@ -21,12 +21,15 @@ if [[ -n $REGISTRY_AUTH_FILE ]]; then
     echo "ERROR: registry auth file is not present" >&2
     exit 102
   fi
+else
+  echo "ERROR: variable 'REGISTRY_AUTH_FILE' is not set" >&2
+  exit 103
 fi
 
 for TAG in $(IFS=$'\n'; ls -1 "${NAMESPACE}/${REPOSITORY}"); do
   if ! podman image exists "localhost/${NAMESPACE}/${REPOSITORY}:${TAG}"; then
     echo "ERROR: local image dosn't exist, you have to build it first" >&2
-    exit 103
+    exit 104
   fi
   podman push --authfile "${REGISTRY_AUTH_FILE}" "${NAMESPACE}/${REPOSITORY}:${TAG}" "${REGISTRY}/${NAMESPACE}/${REPOSITORY}:${TAG}"
 done
