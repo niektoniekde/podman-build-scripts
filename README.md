@@ -5,7 +5,7 @@ Just create an 'env' file and keep the directory structure:
 `${NAMESPACE}/${REPOSITORY}/${TAG}` 
  
 Each directory under repository directory is dealt as tag.  
-So if the directory structure looks like this:
+So for example if the directory structure looks like this:
 ```
   niektoniekde/
     rsyslog/
@@ -28,14 +28,3 @@ and also these two images will be push to registry with `podman-push-img`.
 * ``$NAMESPACE`` - namespace where repositories reside, eg. your login name at Docker Hub.
 * ``$REPOSITORY`` - repository name.
 * ``$REGISTRY_AUTH_FILE`` - auth file to registry provided to podman by ``--authfile`` argument. 
-
-There is tool ``registryauth.env`` for exporting ``$REGISTRY_AUTH_FILE`` to environment
-if authfile is kept in ``${PWD}/.auth`` directory named as ``auth.json``.  
-It can be used like this:  
-```
-$ . registryauth.env
-```
-
-# Dockerfile(s)
-Directory ``niektoniekde`` (``${NAMESPACE}``) containing directory structure where Dockerfiles are present is not part of **this** GitHub repository.
-Each image built this way has its own repository where tags are kept as branches.
